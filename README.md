@@ -26,7 +26,7 @@ This gem offers read/write access to [YieldManager's API tools](https://api.yiel
 ad-hoc reporting through the Reportware tool.
 
 It pulls a fresh wsdl from the api.yieldmanager.com site the first time you use a service
-and re-uses that wsdl for the life of the Yieldmanager::Client object.
+and re-uses that wsdl for the life of the Yieldmanager2::Client object.
 
 ### Installation
 
@@ -46,7 +46,7 @@ To use in a Rails project, add this to config/environment.rb:
 
 	config.gem 'yieldmanager2'
 
-### Creating a Yieldmanager::Client
+### Creating a Yieldmanager2::Client
 
 The easiest method is allowing your environment variables to supply all config details:
 * YIELDMANAGER_USER
@@ -152,7 +152,7 @@ as ordinary data.
 When simulating report calls without actually hitting Yieldmanager, you can
 create your own reports.
 
-	rpt = Yieldmanager::Report.new
+	rpt = Yieldmanager2::Report.new
 	rpt.headers = ["first","second"]
 	rpt.add_row([1,2])
 	rpt.data.first.by_name("first").should == 1
