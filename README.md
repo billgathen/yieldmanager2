@@ -37,9 +37,9 @@ Yieldmanager2 is available as a gem for easy installation.
 or if you're using [RVM](https://rvm.beginrescueend.com/) (and why on earth wouldn't you?)
 
 	gem install yieldmanager2
-  
+	
 The project is available for review/forking on github.com
-  
+	
 	git clone git://github.com/billgathen/yieldmanager2.git
 
 To use in a Rails project, add this to config/environment.rb:
@@ -56,9 +56,9 @@ The easiest method is allowing your environment variables to supply all config d
 
 Allowing you do this:
 
-  require 'yieldmanager2'
+	require 'yieldmanager2'
 
-  @ym = Yieldmanager2::Client.new
+	@ym = Yieldmanager2::Client.new
 
 ...and allowing you to keep your login details out of your project (as it should have been from the start).
 
@@ -165,28 +165,28 @@ massively speed-up a large YM test suite.
 
 To get it working, add both VCR and WebMock as development dependencies in your gemfile:
 
-  group :development, :test do
-    gem "vcr"
-    gem "webmock"
-  end
+	group :development, :test do
+	  gem "vcr"
+	  gem "webmock"
+	end
 
 Then include the following in spec_helper.rb:
 
-  require 'vcr'
+	require 'vcr'
 
-  VCR.configure do |c|
-    c.cassette_library_dir = 'spec/fixtures'
-    c.hook_into :webmock
-    c.configure_rspec_metadata!
-  end
+	VCR.configure do |c|
+	  c.cassette_library_dir = 'spec/fixtures'
+	  c.hook_into :webmock
+	  c.configure_rspec_metadata!
+	end
 
 To VCR-enable a spec that hits YM, add ***:vcr => true*** to the spec:
 
-  it "uses VCR to speed things up", :vcr => true do
+	it "uses VCR to speed things up", :vcr => true do
 
 ***NOTE*** If you're hacking on the gem itself and want to force a true rerun, use the rake task:
 
-  rake clear_vcr_cassettes
+	rake clear_vcr_cassettes
 
 ### Wiredumps (SOAP logging)
 
@@ -194,20 +194,20 @@ To see the nitty-gritty of what's going over the wire (Yahoo tech support often 
 you can activate a "wiredump" on a per-call basis. Typically you just echo it to standard out.
 For instance:
 
-  Savon.configure{ |config| config.log = true }
+	Savon.configure{ |config| config.log = true }
 	adv = client.entity.get(token,12345)
-  Savon.configure{ |config| config.log = false }
+	Savon.configure{ |config| config.log = false }
 
 For Rails in a passenger environment, standard out doesn't end up in the logfiles.
 Instead, redirect to a file:
 
 	wiredump_file = "#{Rails.root}/log/wiredump_#{Time.new.strftime('%H%M%S')}.log"
-  l = Logger.new(wiredump_file)
-  Savon.configure{ |config| config.log = true; config.logger = l }
+	l = Logger.new(wiredump_file)
+	Savon.configure{ |config| config.log = true; config.logger = l }
 
 	adv = client.entity.get(token,12345)
 
-  Savon.configure{ |config| config.log = false }
+	Savon.configure{ |config| config.log = false }
 
 ### session vs. start_session/end_session
 
@@ -221,11 +221,8 @@ wrap your logic in a begin/ensure clause and call end_session from the ensure.
  
 * Fork the project.
 * Make your feature addition or bug fix.
-* Add specs for it. This is important so I don't break it in a
-  future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but
-  bump version in a commit by itself I can ignore when I pull)
+* Add specs for it. This is important so I don't break it in a future version unintentionally.
+* Commit, do not mess with rakefile, version, or history.  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
 
 ## Copyright
