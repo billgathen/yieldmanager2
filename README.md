@@ -1,3 +1,5 @@
+# Updates currently broken: for informational purposes only! Use at your own risk!
+
 # Why yieldmanager2? Why not just go 1.0 with [the existing gem](http://github.com/billgathen/yieldmanager)?
 
 Backward-compatibility. I'd gotten most of the way down the road of a complete rewrite,
@@ -188,14 +190,18 @@ To VCR-enable a spec that hits YM, add ***:vcr => true*** to the spec:
 
 	rake clear_vcr_cassettes
 
+Take a peek inside the Rakefile to see how to automate clearing the files for your own projects.
+
 ### Wiredumps (SOAP logging)
 
 To see the nitty-gritty of what's going over the wire (Yahoo tech support often asks for this),
-you can activate a "wiredump" on a per-call basis. Typically you just echo it to standard out.
+you can activate a "wiredump" on a per-session basis. Typically you just echo it to standard out.
 For instance:
 
 	Savon.configure{ |config| config.log = true }
-	adv = client.entity.get(token,12345)
+  client.session do |token|
+		adv = client.entity.get(token,12345)
+	end
 	Savon.configure{ |config| config.log = false }
 
 For Rails in a passenger environment, standard out doesn't end up in the logfiles.
@@ -205,7 +211,9 @@ Instead, redirect to a file:
 	l = Logger.new(wiredump_file)
 	Savon.configure{ |config| config.log = true; config.logger = l }
 
-	adv = client.entity.get(token,12345)
+	client.session do |token|
+		adv = client.entity.get(token,12345)
+	end
 
 	Savon.configure{ |config| config.log = false }
 
@@ -222,7 +230,7 @@ wrap your logic in a begin/ensure clause and call end_session from the ensure.
 * Fork the project.
 * Make your feature addition or bug fix.
 * Add specs for it. This is important so I don't break it in a future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
+* Commit, do not mess with rakefile, version, or history.
 * Send me a pull request. Bonus points for topic branches.
 
 ## Copyright
