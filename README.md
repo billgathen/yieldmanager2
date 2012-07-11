@@ -1,6 +1,6 @@
 # Alpha software: updates currently broken...
 
-# Why yieldmanager2? Why not just go 1.0 with [the existing gem](http://github.com/billgathen/yieldmanager)?
+# Why yieldmanager2? Why not go 1.0 with [the existing gem](http://github.com/billgathen/yieldmanager)?
 
 Backward-compatibility. I'd gotten most of the way down the road of a complete rewrite,
 ditching soap4r and hpricot (both stone-dead projects), when I realized that supporting
