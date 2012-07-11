@@ -1,4 +1,4 @@
-# Updates currently broken: for informational purposes only! Use at your own risk!
+# Alpha software: updates currently broken...
 
 # Why yieldmanager2? Why not just go 1.0 with [the existing gem](http://github.com/billgathen/yieldmanager)?
 
@@ -44,9 +44,9 @@ The project is available for review/forking on github.com
 	
 	git clone git://github.com/billgathen/yieldmanager2.git
 
-To use in a Rails project, add this to config/environment.rb:
+To use in a Rails project, add this to your Gemfile:
 
-	config.gem 'yieldmanager2'
+	gem 'yieldmanager2'
 
 ### Creating a Yieldmanager2::Client
 
